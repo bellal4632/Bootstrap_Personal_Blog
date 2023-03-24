@@ -14,22 +14,22 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle text-light" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i> <b><?= ' ' . $_SESSION['username'] ?></b> </a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="../dashboard.php">Dashboard</a></li>
+                        <li><a class="dropdown-item" href="../admin/dashboard.php">Dashboard</a></li>
                         <li><a class="dropdown-item" href="">My Profile</a></li>
                         <li><a class="dropdown-item" href="../article_add.php">Post A Blog</a></li>
                         
                         <li>
                             <hr class="dropdown-divider" />
                         </li>
-                        <li><a class="dropdown-item" href="../inc/logout.php">Logout</a></li>
+                        <li><a class="dropdown-item" href="../admin/inc/logout.php">Logout</a></li>
                     </ul>
                 </li>
             <?php } else { ?>
                 <li class="nav-item">
-                    <a class="nav-link" area-current="page" href="../login.php">Login</a>
+                    <a class="nav-link" area-current="page" href="../admin/login.php">Login</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" area-current="page" href="../register.php">Register</a>
+                    <a class="nav-link" area-current="page" href="../admin/register.php">Register</a>
                 </li>
             <?php } ?>
                 </ul>

@@ -51,118 +51,20 @@ $row1 = mysqli_fetch_assoc($result1);
                 <!-- Featured blog post-->
                 <?php require "inc/featured.php"; ?>
                 <!-- Blog post-->
-                <div class="row">
-                    <?php
-                    while ($row = $r->fetch_assoc()) {
-                    ?>
-                        <div class="col-lg-4">
-                            <div class="card mb-4">
-                                <img height="220px" src="../admin/a.assets/article_image/<?php echo $row["images"]; ?>" class="card-img-top" alt="<?php echo $row["title"]; ?>">
-                                <div style="font-size: 13px; text-align: justify; height:60px; display: flex; align-items: start;" class="card-header"><b>
-                                        <a class="link-dark" style="text-decoration:none" href="details.php?id=<?= $row['id'] ?>"> <?php echo implode(' ', array_slice(explode(' ', $row['title']), 0, 9)); ?> </a></b>
-                                </div>
-                                <div class="card-body">
-                                    <small>
-                                        <p style="text-align: justify; height:140px; display: flex; align-items: start;" class="card-text"><?php echo implode(' ', array_slice(explode(' ', $row['description']), 0, 35)); ?>...
-                                        </p>
-                                    </small>
-                                </div>
-                                <div class="card-footer ">
-                                    <small class="text-muted">
-                                        <p class="mt-2" style="float: left; display: flex; align-items: center;">
-                                            <b><?php echo $row1["date_only"]; ?></b>
-                                        </p>
-                                        <a style="float: right; display: flex; align-items: center;" class="btn btn-primary" href="details.php?id=<?= $row['id'] ?>">Read more →</a>
-                                    </small>
-                                </div>
-                            </div>
-                        </div>
-                    <?php
-                    }
-                    ?>
-                </div>
+                <?php require "inc/blog.php"; ?>
                 <!-- // create pagination links -->
-                <?php
-                // create pagination links
-                echo '<div class="container">';
-                echo '<ul class="pagination justify-content-center">';
-
-                // determine how many pages there are
-                $total_pages = ceil($conn->query("SELECT COUNT(*) FROM articles")->fetch_row()[0] / $cards_per_page);
-
-                // display "Newer" button if not on first page
-                if ($page > 1) {
-                    echo '<li class="page-item"><a class="page-link" href="?page=' . ($page - 1) . '">Newer</a></li>';
-                }
-
-                // display page numbers
-                for ($i = 1; $i <= $total_pages; $i++) {
-                    echo '<li class="page-item';
-                    if ($i == $page) {
-                        echo ' active';
-                    }
-                    echo '"><a class="page-link" href="?page=' . $i . '">' . $i . '</a></li>';
-                }
-
-                // display "Older" button if not on last page
-                if ($page < $total_pages) {
-                    echo '<li class="page-item"><a class="page-link" href="?page=' . ($page + 1) . '">Older</a></li>';
-                }
-
-                echo '</ul>';
-                echo '</div>';
-                ?>
+                <?php require "inc/pagination.php"; ?>
             </div>
             <!-- Side widgets-->
             <div class="col-lg-3">
                 <!-- Search widget-->
-                <div class="card mb-4">
-                    <div class="card-header">Search</div>
-                    <div class="card-body">
-                        <div class="input-group">
-                            <input class="form-control" type="text" placeholder="Enter search term..." aria-label="Enter search term..." aria-describedby="button-search" />
-                            <button class="btn btn-primary" id="button-search" type="button">Go!</button>
-                        </div>
-                    </div>
-                </div>
+                <?php require "inc/search.php"; ?>
                  <!-- Leatest Post widget-->
                  <?php require "inc/leatest.php"; ?>
                 <!-- Categories widget-->
                 <?php require "inc/category.php"; ?>
                 <!-- Log In widget-->
-                <div class="card mb-4">
-                    <div class="card-header">Login</div>
-                    <div class="card-body">
-                        <form class="needs-validation" method="post" enctype="multipart/form-data" novalidate>
-
-                            <div class="col">
-                                <div class="col mb-1">
-                                    <label for="email" class="mb-1" >E-mail</label>
-                                    <input type="text" class="form-control" placeholder="Enter Email" id="email" name="email" required>
-                                    <div class="valid-feedback">
-                                        Looks good!
-                                    </div>
-                                    <div class="invalid-feedback">
-                                        Please Enter Third Slider Title.
-                                    </div>
-                                </div>
-                                <div class="col mb-1">
-                                    <label for="password" class="mb-1">Password</label>
-                                    <input type="password" class="form-control" placeholder="Enter Password" id="password" name="password" required>
-                                    <div class="valid-feedback">
-                                        Looks good!
-                                    </div>
-                                    <div class="invalid-feedback">
-                                        Please Enter Third Slider Title.
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="d-flex justify-content-center mt-2">
-                                <button type="submit" class="btn btn-primary col-5 col-sm-5" name="submit"><b>Log In</b></button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
+                <?php require "inc/login.php"; ?>
             </div>
         </div>
     </div>
